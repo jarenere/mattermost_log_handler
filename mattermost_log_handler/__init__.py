@@ -80,11 +80,14 @@ class MattermostLogHandler(Handler):
             payload['icon_url'] = self.icon_url
         if self.channel is not None:
             payload['channel'] = self.channel
-        if self.asyncio_requests:
-            self.loop.run_in_executor(
-                None,
-                functools.partial(self.session.post,
-                                  self.webhook_url,
-                                  data=json.dumps(payload)))
-        else:
-            self.session.post(self.webhook_url, data=json.dumps(payload))
+        try:
+            if self.asyncio_requests:
+                self.loop.run_in_executor(
+                    None,
+                    functools.partial(self.session.post,
+                                      self.webhook_url,
+                                      data=json.dumps(payload)))
+            else:
+                self.session.post(self.webhook_url, data=json.dumps(payload))
+        except:
+            pass
