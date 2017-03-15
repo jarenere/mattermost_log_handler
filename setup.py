@@ -13,7 +13,7 @@ setup(
     name='mattermost_log_handler',
     packages=['mattermost_log_handler'],
 
-    version='0.0.1',
+    version='0.0.2',
     author='Julio Arenere Mendoza',
     author_email='jarenere@gmail.com',
     description=('Posts log events to Mattermost via webhook'),
